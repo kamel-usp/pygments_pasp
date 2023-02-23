@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pygments_pasp"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name = "Renato Lui Geh", email = "renatogeh@gmail.com" },
 ]
@@ -20,6 +20,9 @@ classifiers = [
   "Environment :: Console",
 ]
 description = "Pygments package for pasp"
+
+[project.entry-points."pygments.lexers"]
+pasplexer = "pygments_pasp.pasp:PaspLexer"
 
 [project.urls]
 Repository = "https://github.com/RenatoGeh/pygments_pasp"
