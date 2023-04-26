@@ -34,7 +34,7 @@ def _script_lexer(name, lexer):
                      Punctuation), # .)
             '#pop')
 
-def _torch_lexer(lexer):
+def _python_lexer(lexer):
     return (rf'(?s)(\s*)(.*)(#end)(\s*)(\.)',
             bygroups(Text, # space
                      using(lexer),
@@ -71,15 +71,16 @@ class PaspLexer(RegexLexer):
             (r'[/<=>+\-*\\?&@|:;~k.!]+', Operator),
             (r'(#count|#sum|#min|#max|#show|#const|#edge|#minimize|#maximize|'
              r'#defined|#heuristic|#project|#program|'
-             r'#external|#theory|#end|not|#query|undef|as|in|at|with|\?|\!)\b', Keyword),
+             r'#external|#theory|#end|not|#query|#learn|#semantics|undef|as|in|at|with|\?|\!)\b', Keyword),
             (r'#script', Keyword, 'script'),
-            (r'#torch', Keyword, 'torch'),
+            (r'#python', Keyword, 'python'),
             (r'#include\b', Keyword, 'include'),
             (r'(#inf|#sup|#true|#false)\b', Keyword.Constant),
             (r"[_']*[A-Z][0-9a-zA-Z'_]*", Name.Variable),
             (r'_', Name.Variable),
             (r"[_']*[a-z][0-9a-zA-Z'_]*", Text),
             (r'\s', Text),
+            (r"(test|train)", Name.Builtin),
         ],
         'include': [
             (r'<(\\>|\\"|\\\\|[^\\>])*>', String.Double, "#pop"),
@@ -92,8 +93,8 @@ class PaspLexer(RegexLexer):
             _script_lexer('lua', LuaLexer),
             ('', Text, '#pop'), # fallback to normal parsing
         ],
-        'torch': [
-            _torch_lexer(PythonLexer),
+        'python': [
+            _python_lexer(PythonLexer),
             ('', Text, '#pop'), # fallback to normal parsing
         ],
         'nested-comment': [
