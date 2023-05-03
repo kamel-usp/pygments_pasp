@@ -71,7 +71,7 @@ class PaspLexer(RegexLexer):
             (r'[/<=>+\-*\\?&@|:;~k.!]+', Operator),
             (r'(#count|#sum|#min|#max|#show|#const|#edge|#minimize|#maximize|'
              r'#defined|#heuristic|#project|#program|'
-             r'#external|#theory|#end|not|#query|#learn|#semantics|undef|as|in|at|with|\?|\!)\b', Keyword),
+             r'#external|#theory|#end|not|#query|#learn|#semantics|undef|as|in|on|at|with|\?|\!)\b', Keyword),
             (r'#script', Keyword, 'script'),
             (r'#python', Keyword, 'python'),
             (r'#include\b', Keyword, 'include'),
