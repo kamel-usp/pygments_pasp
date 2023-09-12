@@ -59,7 +59,7 @@ class PaspLexer(RegexLexer):
             (r'%\*', Comment.Multiline, 'nested-comment'),
             (r'%.*', Comment.Single),
             (r'0x[0-9a-fA-F]+', Number.Hex),
-            (r'\d+', Number.Integer),
+            (r'\d+|\?', Number.Integer),
             (r'"(\\n|\\"|\\\\|[^\\"])*"', String.Double),
             (r':-', Punctuation),
             (r'\~', Punctuation),
